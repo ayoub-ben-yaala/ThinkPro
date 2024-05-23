@@ -7,7 +7,7 @@ import {
   getAll,
   AddOnce,
   deleteOnce
-} from '../controllers/typeProduit.js';
+} from '../controllers/Produit.js';
 
 router
   .route('/')
@@ -15,7 +15,7 @@ router
   .post(AddOnce);
 
   router
-  .route('/:idType')
+  .route('/:idProduit')
   .get(getOnce)
   .put(putOnce)
   .patch(patchOnce)

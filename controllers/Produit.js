@@ -11,7 +11,7 @@ export function getAll(req, res) {
     });
 }
 export async function AddOnce(req, res) {
-    const Produit = new Produit({
+    const Produitt = new Produit({
         nomProduit: req.body.nomProduit,
         descProduit: req.body.descProduit,
         prix: req.body.prix,
@@ -20,7 +20,7 @@ export async function AddOnce(req, res) {
     });
 
     try {
-        const newProduit = await Produit.create(Produit);
+        const newProduit = await Produit.create(Produitt);
         
         res.status(201).json({
             message: "Produit created successfully!",
@@ -36,7 +36,7 @@ export async function AddOnce(req, res) {
 
 export async function getOnce(req, res) {
     try {
-        const Produit = await Produit.findOne({ nomProduit: req.params.nomProduit });
+        const Produit = await Produit.findOne({ _id: req.params.idProduit });
         
         if (!Produit) {
             return res.status(404).json({ message: "Produit non trouvé" });
@@ -54,8 +54,8 @@ export async function getOnce(req, res) {
 export async function putOnce(req, res) {
     try {
         const updatedProduit = await Produit.findOneAndUpdate(
-            { nomProduit: req.params.nomProduit }, 
-            { descProduit: req.body.descProduit, }, // Données à mettre à jour
+            { _id: req.params.idProduit }, 
+            { nomProduit: req.params.nomProduit , descProduit: req.body.descProduit, }, // Données à mettre à jour
             { new: true } 
         );
 

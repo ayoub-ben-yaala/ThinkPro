@@ -21,5 +21,5 @@ const typeProduitSchema = new Schema(
 );
 
 
-export default model("User", userSchema);
+export default model("TypeProduit", typeProduitSchema);
 

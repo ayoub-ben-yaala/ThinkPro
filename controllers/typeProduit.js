@@ -11,13 +11,14 @@ export function getAll(req, res) {
     });
 }
 export async function AddOnce(req, res) {
-    const typeProduit = new typeProduit({
+    const typeProduitt = new typeProduit({
+
         nomType: req.body.nomType,
         descType: req.body.descType
     });
 
     try {
-        const newtypeProduit = await typeProduit.create(typeProduit);
+        const newtypeProduit = await typeProduit.create(typeProduitt);
         
         res.status(201).json({
             message: "typeProduit created successfully!",
@@ -33,7 +34,7 @@ export async function AddOnce(req, res) {
 
 export async function getOnce(req, res) {
     try {
-        const typeProduit = await typeProduit.findOne({ nomType: req.params.nomType });
+        const typeProduit = await typeProduit.findOne({ _id: req.params.idType });
         
         if (!typeProduit) {
             return res.status(404).json({ message: "typeProduit non trouvé" });
@@ -51,8 +52,8 @@ export async function getOnce(req, res) {
 export async function putOnce(req, res) {
     try {
         const updatedtypeProduit = await typeProduit.findOneAndUpdate(
-            { nomType: req.params.nomType }, 
-            { descType: req.body.descType, }, // Données à mettre à jour
+            { idType: req.params.idType}, 
+            { nomType: req.params.nomType ,descType: req.body.descType }, // Données à mettre à jour
             { new: true } 
         );
 
