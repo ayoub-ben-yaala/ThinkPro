@@ -1,8 +1,8 @@
 import express from'express';
 var router = express.Router();
 import {
-  getUserByName,
-  // getUserByEmail,
+  // getUserByName,
+  getUserByEmail,
   putUser,
   patchUser,
   getAllUsers,
@@ -25,8 +25,8 @@ router.route('/signup')
 router.route('/signin')
   .post(signin);
 
-router.get('/:userName',getUserByName);
-// router.post('/:email',getUserByEmail);
+// router.get('/:userName',getUserByName);
+router.get('/:email',getUserByEmail);
 
   router
   .route('/:userId')

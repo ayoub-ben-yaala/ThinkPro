@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { generateToken } from '../jwt.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import 'dotenv/config';
 
 
 
@@ -79,23 +80,9 @@ export async function AddUser(req, res) {
     }
 }
 
-// export async function getUserByEmail(req, res) {
-//     try {
-//         const user = await User.findOne({ email: req.params.email });
-        
-//         if (!user) {
-//             return res.status(404).json({ message: "Utilisateur non trouvé" });
-//         }
-        
-//         res.status(200).json(user);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Erreur lors de la recherche de l'utilisateur" });
-//     }
-// }
-export async function getUserByName(req, res) {
+export async function getUserByEmail(req, res) {
     try {
-        const user = await User.findOne({ userName: req.params.userName });
+        const user = await User.findOne({ email: req.params.email });
         
         if (!user) {
             return res.status(404).json({ message: "Utilisateur non trouvé" });
@@ -107,6 +94,20 @@ export async function getUserByName(req, res) {
         res.status(500).json({ error: "Erreur lors de la recherche de l'utilisateur" });
     }
 }
+// export async function getUserByName(req, res) {
+//     try {
+//         const user = await User.findOne({ userName: req.params.userName });
+        
+//         if (!user) {
+//             return res.status(404).json({ message: "Utilisateur non trouvé" });
+//         }
+        
+//         res.status(200).json(user);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Erreur lors de la recherche de l'utilisateur" });
+//     }
+// }
 
 export async function putUser(req, res) {
     try {
@@ -190,7 +191,11 @@ export const forgotPassword = async (req, res) => {
         }
 
         const token = crypto.randomBytes(20).toString('hex');
-        const tokenExpiry = Date.now() + 3600000;
+        let date = new Date();
+        const tokenExpiry = date.setHours(date.getHours() + 1);
+        
+
+
         console.log(token);
         user.resetPasswordToken = token;
         user.resetPasswordExpires = tokenExpiry;
@@ -241,6 +246,7 @@ export const resetPassword = async (req, res) => {
 
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
+        user.passWord=hashedPassword;
         await user.save();
 
         res.status(200).send({ message: 'Mot de passe réinitialisé avec succès' });

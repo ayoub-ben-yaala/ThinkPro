@@ -17,8 +17,8 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique:true
-           
-        },
+            },
+
           adress: {
             type: String,
             required: true
@@ -36,11 +36,22 @@ const userSchema = new Schema(
         },
 
         dateOfB:{
-            type:Date,
+            type:String,
+            required:true
             
         },
-        resetPasswordToken: String,
-        resetPasswordExpires: Date,
+        avatar:{
+            type:String,
+            required:true
+           
+
+        },
+        resetPasswordToken: {
+            type:String
+        },
+        resetPasswordExpires:{
+            type: Date
+        },
     },
     {
         timestamps: true
