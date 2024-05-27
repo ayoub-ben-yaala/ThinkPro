@@ -1,24 +1,28 @@
 import mongoose from 'mongoose'; // Importer Mongoose
 import user from './user';
+import classe from './class';
+import cours from './cours';
 const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
 // Créez votre schéma qui décrit à quoi ressemblera chaque document
-const classSchema = new Schema(
+const levelSchema = new Schema(
     {
-        className: {
+        levelName: {
             type: String,
              // Cet attribut est obligatoire
         },
-        idteacher: {
-            type: user,
+        
+        programme: {
+            type: String,
           
         },
-        idstudents: {
-            type: user,
-           
-        },
-        capacity: {
-            type: Number,
+
+        class: {
+            type: classe,
             
+        },
+
+        cours: {
+            type: cours
         },
     },
     {
@@ -27,4 +31,4 @@ const classSchema = new Schema(
 );
 
 
-export default model("Class", classSchema);
+export default model("Level", levelSchema);

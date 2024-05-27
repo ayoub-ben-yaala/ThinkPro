@@ -16,10 +16,10 @@ export function getAllClass(req, res) {
 export async function addClass(req, res) {
     const classe = new Class({
         className: req.body.className,
-        teacher: req.body.teacher,
-        students: req.body.students,
+        idteacher: req.body.teacher,
+        idstudents: req.body.students,
         capacity: req.body.capacity,
-        schedule: req.body.schedule
+
     });
          
 
@@ -29,7 +29,7 @@ export async function addClass(req, res) {
         
         res.status(201).json({
             message: "Class created successfully!",
-            class: newClass
+            classe: newClass
         });
     } catch (err) {
         console.error(err);
@@ -60,7 +60,7 @@ export async function updateClass(req, res) {
 
         const updatedClass = await Class.findOneAndUpdate(
             {  _id:req.params.classId}, 
-            { className: req.body.className,teacher: req.body.teacher,students: req.body.students,capacity: req.body.capacity,schedule: req.body.schedule }, // Données à mettre à jour
+            { className: req.body.className,idteacher: req.body.idteacher,idstudents: req.body.idstudents,capacity: req.body.capacity }, // Données à mettre à jour
             { new: true } 
         );
 
@@ -70,7 +70,7 @@ export async function updateClass(req, res) {
 
         res.status(201).json({
             message: "Classe mis à jour avec succès !",
-            class: updatedClass
+            classe: updatedClass
         });
     } catch (error) {
         console.error(error);
