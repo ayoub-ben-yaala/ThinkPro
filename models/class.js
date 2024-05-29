@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'; // Importer Mongoose
-import user from './user';
+import User from './user';
 const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
 // Créez votre schéma qui décrit à quoi ressemblera chaque document
 const classSchema = new Schema(
@@ -9,11 +9,11 @@ const classSchema = new Schema(
              // Cet attribut est obligatoire
         },
         idteacher: {
-            type: user,
+            type: User,
           
         },
         idstudents: {
-            type: user,
+            type: User,
            
         },
         capacity: {

@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose'; // Importer Mongoose
 const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
 

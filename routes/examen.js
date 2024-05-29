@@ -3,12 +3,9 @@ var router = express.Router();
 import {
   getAllexamens,
   addExamen,
-  getAllexamens,
   updateExamen,
   deleteExamen,
   getExamen,
-  updateExamen,
-  deleteExamen
 
 } from '../controllers/examen.js';
 

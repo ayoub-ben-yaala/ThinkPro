@@ -3,12 +3,10 @@ var router = express.Router();
 import {
   getAllnotes,
   addNote,
-  getAllnotes,
   updateNote,
   deleteNote,
   getNote,
-  updateNote,
-  deleteNote
+
 
 } from '../controllers/note.js';
 
