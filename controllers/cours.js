@@ -1,6 +1,6 @@
 import User from '../models/user.js';
 import Class from '../models/class.js';
-import cours from '../models/cours.js';
+import Cours from '../models/cours.js';
 
 
 
@@ -32,11 +32,11 @@ export async function addCours(req, res) {
         
         res.status(201).json({
             message: "this cours is created",
-            Cours: newCours
+            cours: newCours
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "An error occurred while creating the Cours" });
+        res.status(500).json({ error: "An error occurred while creating the cours" });
     }
 }
 
@@ -93,10 +93,10 @@ export async function deleteCours(req, res) {
 
         res.status(200).json({
             message: "Cours supprimé avec succès !",
-            Cours: deletedCours
+            cours: deletedCours
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Erreur lors de la suppression du Cours" });
+        res.status(500).json({ error: "Erreur lors de la suppression du cours" });
     }
 }

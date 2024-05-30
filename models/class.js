@@ -1,23 +1,28 @@
 import mongoose from 'mongoose'; // Importer Mongoose
-import User from './user';
+import user from './user.js';
 const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
 // Créez votre schéma qui décrit à quoi ressemblera chaque document
 const classSchema = new Schema(
     {
         className: {
             type: String,
-             // Cet attribut est obligatoire
+            required: true
         },
         idteacher: {
-            type: User,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
           
         },
         idstudents: {
-            type: User,
+            type: [Schema.Types.ObjectId],
+            ref: 'User',
+            required: true
            
         },
         capacity: {
             type: Number,
+            required: true
             
         },
     },

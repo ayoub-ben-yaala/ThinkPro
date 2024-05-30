@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose'; // Importer Mongoose
+import dotenv from 'dotenv';
 
 import userRoutes from './routes/user.js';
 import classRoutes from './routes/class.js'
@@ -7,6 +8,8 @@ import coursRoutes from './routes/cours.js'
 import examenRoutes from './routes/examen.js'
 import levelRoutes from './routes/level.js'
 import noteRoutes from './routes/note.js'
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;

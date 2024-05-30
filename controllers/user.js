@@ -62,7 +62,8 @@ export async function AddUser(req, res) {
         adress: req.body.adress,
         phone: req.body.phone,
         role: req.body.role,
-        dateOfB:req.body.dateOfB
+        dateOfB:req.body.dateOfB,
+        avatar:req.body.avatar
     });
          
 

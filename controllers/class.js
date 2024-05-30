@@ -16,8 +16,8 @@ export function getAllClass(req, res) {
 export async function addClass(req, res) {
     const classe = new Class({
         className: req.body.className,
-        idteacher: req.body.teacher,
-        idstudents: req.body.students,
+        idteacher: req.body.idteacher,
+        idstudents: req.body.idstudents,
         capacity: req.body.capacity,
 
     });
@@ -39,7 +39,7 @@ export async function addClass(req, res) {
 
 export async function getClass(req, res) {
     try {
-        const classe = await Class.findOne({ className: req.params.className });
+        const classe = await Class.findOne({ _id: req.params.classId });
         
         if (!classe) {
             return res.status(404).json({ message: "Class not found" });
@@ -59,8 +59,14 @@ export async function updateClass(req, res) {
 
 
         const updatedClass = await Class.findOneAndUpdate(
-            {  _id:req.params.classId}, 
-            { className: req.body.className,idteacher: req.body.idteacher,idstudents: req.body.idstudents,capacity: req.body.capacity }, // Données à mettre à jour
+            {  _id:req.params.classId},
+
+            { 
+            className: req.body.className,
+            idteacher: req.body.idteacher,
+            idstudents: req.body.idstudents,
+            capacity: req.body.capacity 
+            }, // Données à mettre à jour
             { new: true } 
         );
 
@@ -68,7 +74,7 @@ export async function updateClass(req, res) {
             return res.status(404).json({ message: "Classe non trouvé" });
         }
 
-        res.status(201).json({
+        res.status(201).json({ ////////////
             message: "Classe mis à jour avec succès !",
             classe: updatedClass
         });
@@ -82,7 +88,7 @@ export async function updateClass(req, res) {
 
 export async function deleteClass(req, res) {
     try {
-        const deletedClass = await Class.findOneAndDelete({ className: req.params.className });
+        const deletedClass = await Class.findOneAndDelete({ _id: req.params.classId });
 
         if (!deletedClass) {
             return res.status(404).json({ message: "Classe non trouvé" });

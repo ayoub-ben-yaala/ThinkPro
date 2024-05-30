@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'; // Importer Mongoose
-import user from './user';
-import classe from './class';
-import cours from './cours';
+import user from './user.js';
+import classe from './class.js';
+import cours from './cours.js';
 const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
 // Créez votre schéma qui décrit à quoi ressemblera chaque document
 const levelSchema = new Schema(
@@ -13,16 +13,21 @@ const levelSchema = new Schema(
         
         programme: {
             type: String,
+            required: true
           
         },
 
         class: {
-            type: classe,
+            type: Schema.Types.ObjectId,
+            ref: 'Class',
+            required: true
             
         },
 
         cours: {
-            type: cours
+            type: Schema.Types.ObjectId,
+            ref: 'Cours',
+            required: true
         },
     },
     {
