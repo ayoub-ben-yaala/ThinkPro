@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 
 import userRoutes from "./routes/user.js";
 import publicationRoutes from "./routes/publication.routes.js";
-
+import commentRoutes from "./routes/comment.route.js";
 //importing models
 import User from "./models/user.js";
 import Publication from "./models/publication.js";
+import comment from "./models/comment.js";
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -38,5 +39,6 @@ app.listen(port, () => {
 
 app.use("/user", userRoutes);
 app.use("/", publicationRoutes);
+app.use("/", commentRoutes);
 
 

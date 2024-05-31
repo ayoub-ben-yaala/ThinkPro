@@ -1,24 +1,33 @@
-// const mongoose = require("mongoose");
-// const User = require("./user");
+import mongoose from "mongoose";
 
-// const commentSchema = new mongoose.Schema({
-//   content: {
-//     type: String,
-//     required: true,
-//   },
-//   created_at: {
-//     type: Date,
-//     required: true,
-//     default: Date.now,
-//   },
-//   //add user id ref
-//   user_id: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: "User",
-//     required: true,
-//   },
-// });
+ const commentSchema = new mongoose.Schema({
+   Text: {
+    type: String,
+    required: true,
+ },
+ created_at: {
+  type: Date,
+  required: true,
+  default: Date.now,
+},
+updated_at: {
+  type: Date,
+  required: true,
+  default: Date.now,
+},
+likeCount: {
+  type: Number,
+  default: 0,
+},  
+dislikeCount: {
+  type: Number,
+  default: 0,
+},  
+ user_id: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref: "User",
+     required: true,
+   },
+ });
 
-// const Comment = mongoose.model("Comment", commentSchema);
-
-// export default Comment;
+ export default model("Comment", commentSchema);

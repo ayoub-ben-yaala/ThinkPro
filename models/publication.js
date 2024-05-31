@@ -15,6 +15,11 @@ const publicationSchema = new Schema({
     required: true,
     default: Date.now,
   },
+  updated_at: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
   //add user id ref
   user_id: {
     type: Schema.Types.ObjectId,
@@ -25,7 +30,7 @@ const publicationSchema = new Schema({
     type: Number,
     default: 0,
   },
-//   comments: [Comment.schema],
+
 });
 
 export default model("Publication", publicationSchema);
