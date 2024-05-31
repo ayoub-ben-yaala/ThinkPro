@@ -1,4 +1,7 @@
 import Commande from '../models/commande.js';
+import Produit from '../models/Produit.js'
+import PDFDocument from 'pdfkit';
+import fs from 'fs';
 
 export function getAll(req, res) {
     Commande
@@ -11,11 +14,7 @@ export function getAll(req, res) {
     });
 }
 export async function AddOnce(req, res) {
-    const Commandee = new Commande({
-        numCommande: req.body.numCommande,
-        qteCommande: req.body.qteCommande
-
-    });
+    const Commandee = new Commande(req.body);
 
     try {
         const newCommande = await Commande.create(Commandee);
@@ -34,13 +33,49 @@ export async function AddOnce(req, res) {
 
 export async function getOnce(req, res) {
     try {
-        const Commande = await Commande.findOne({ _id: req.params.idCommande });
+        const Command = await Commande.findOne({ "_id": req.params.idCommande });
         
-        if (!Commande) {
+        if (!Command) {
             return res.status(404).json({ message: "Commande non trouvé" });
         }
         
-        res.status(200).json(Commande);
+        res.status(200).json(Command);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erreur lors de la recherche d'un Commande" });
+    }
+}
+
+
+
+
+export async function commandePDF(req, res) {
+    try {
+        const Order = await Commande.findOne({ _id: req.params.id });
+        const prod = await Produit.findOne({ _id: Order.produit })
+
+        if (!Order) {
+            return res.status(404).json({ message: "Commande non trouvé" });
+        }
+
+        // Create a new PDF document
+        const doc = new PDFDocument();
+
+        // Set response headers
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="commande_${Order._id}.pdf"`);
+
+        // Pipe generated PDF into response
+        doc.pipe(res);
+
+        // Add content to PDF
+        doc.fontSize(20).text(`num de la commande ${Order.numCommande}`, 100, 100);
+        doc.fontSize(14).text(`qteCommande: ${Order.qteCommande}`, 100, 150);
+        doc.fontSize(14).text(`produit: ${prod.nomProduit}`, 100, 170);
+        // Add more data as needed
+
+        // Finalize PDF and close the stream
+        doc.end();
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Erreur lors de la recherche d'un Commande" });

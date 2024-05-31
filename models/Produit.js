@@ -2,7 +2,6 @@
 import mongoose from 'mongoose'; 
 const { Schema, model } = mongoose; 
 
-// Créez votre schéma qui décrit à quoi ressemblera chaque document
 const ProduitSchema = new Schema(
     {
         nomProduit: {
@@ -20,6 +19,13 @@ const ProduitSchema = new Schema(
         qteProduit: {
             type: Number,
           
+        },
+        imageProduit: {
+            type: String,
+          
+        },
+        typeProduit :{
+            type: String,
         },
         
     },

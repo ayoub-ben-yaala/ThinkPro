@@ -10,10 +10,10 @@ const   CommandeSchema = new Schema(
         },
         qteCommande: {
             type: Number,
-          
+        },
+        produit: {
+            type: String,
         }
-        
-        
     },
     {
         timestamps: true 

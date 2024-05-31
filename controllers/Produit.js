@@ -11,17 +11,8 @@ export function getAll(req, res) {
     });
 }
 export async function AddOnce(req, res) {
-    const Produitt = new Produit({
-        nomProduit: req.body.nomProduit,
-        descProduit: req.body.descProduit,
-        prix: req.body.prix,
-        qteProduit: req.body.qteProduit
-
-    });
-
     try {
-        const newProduit = await Produit.create(Produitt);
-        
+        const newProduit = await Produit.create(req.body)
         res.status(201).json({
             message: "Produit created successfully!",
             Produit: newProduit 
@@ -31,6 +22,7 @@ export async function AddOnce(req, res) {
         res.status(500).json({ error: "An error occurred while creating the Produit" });
     }
 }
+
 
 
 
@@ -50,12 +42,11 @@ export async function getOnce(req, res) {
 }
 
 
-
 export async function putOnce(req, res) {
     try {
         const updatedProduit = await Produit.findOneAndUpdate(
             { _id: req.params.idProduit }, 
-            { nomProduit: req.params.nomProduit , descProduit: req.body.descProduit, }, // Données à mettre à jour
+            { nomProduit: req.params.nomProduit , descProduit: req.body.descProduit, imageProduit: req.body.imageProduit}, 
             { new: true } 
         );
 
