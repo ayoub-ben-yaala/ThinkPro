@@ -17,6 +17,11 @@ const examenSchema = new Schema(
             required: true
            
         },
+        pdfPath: {
+            type: String,
+            required: true
+           
+        },
        
         
         
