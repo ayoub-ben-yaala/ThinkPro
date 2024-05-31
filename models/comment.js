@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 import { model } from "mongoose";
 
  const commentSchema = new mongoose.Schema({
-   Text: {
+   body: {
     type: String,
-    required: true,
+    required: false,
  },
  created_at: {
   type: Date,
-  required: true,
+  required: false,
   default: Date.now,
 },
 updated_at: {
   type: Date,
-  required: true,
+  required: false,
   default: Date.now,
 },
 likeCount: {
@@ -28,7 +28,7 @@ dislikeCount: {
  user_id: {
      type: mongoose.Schema.Types.ObjectId,
      ref: "User",
-     required: true,
+     required: false,
    },
  });
 

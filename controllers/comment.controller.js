@@ -41,3 +41,25 @@ export async function getCommentById(req, res) {
         res.status(500).json({ error: "An error occurred while searching for the comment" });
     }
 }
+// create function that will update the comment body if dislikecount is greater than 10
+export async function updateComment(req, res) {
+    try {
+        const comment = await Comment.findById(req.params.id);
+
+        
+        if (!comment) {
+            return res.status(404).json({ message: "Comment not found" });
+        }
+        
+        if (commentdislikeCount > 10) {
+            comment.body = "This comment has been hidden due to too many dislikes";
+        }
+        
+         const updatedComment = await comment.save();
+        
+        res.status(200).json(updatedComment);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while updating the comment" });
+    }
+}
