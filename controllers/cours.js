@@ -28,7 +28,7 @@ export async function addCours(req, res) {
 
 
     try {
-        const newCours = await Class.create(cours);
+        const newCours = await Cours.create(cours);
         
         res.status(201).json({
             message: "this cours is created",
@@ -57,13 +57,9 @@ export async function getCours(req, res) {
 
 export async function updateCours(req, res) {
     try {
-
-        
-
-
         const updatedCours = await Cours.findOneAndUpdate(
             {  _id:req.params.coursId}, 
-            { courName: req.body.courName,idteacher: req.body.idteacher,duration: req.body.duration,material: req.body.material,class: req.body.class,coef: req.body.coef }, // Données à mettre à jour
+            { courName: req.body.courName,idteacher: req.body.teacher,duration: req.body.duration,material: req.body.material,class: req.body.class,coef: req.body.coef }, // Données à mettre à jour
             { new: true } 
         );
 

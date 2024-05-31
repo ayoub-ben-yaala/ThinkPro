@@ -20,10 +20,7 @@ export async function addLevel(req, res) {
         programme: req.body.programme,
         class: req.body.class,
         cours: req.body.cours,
-    });
-         
-
-
+    }); 
     try {
         const newLevel= await Level.create(level);
         

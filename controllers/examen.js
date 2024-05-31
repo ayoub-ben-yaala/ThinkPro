@@ -80,7 +80,7 @@ export async function updateExamen(req, res) {
 
 export async function deleteExamen(req, res) {
     try {
-        const deletedExamen = await Examen.findOneAndDelete({ idExamen: req.params.idExamen });
+        const deletedExamen = await Examen.findOneAndDelete({ _id: req.params.idExamen });
 
         if (!deletedExamen) {
             return res.status(404).json({ message: "exam not found" });

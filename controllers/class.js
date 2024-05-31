@@ -4,8 +4,7 @@ import Class from '../models/class.js';
 
 
 export function getAllClass(req, res) {
-    Class
-    .find({})
+    Class.find({})
     .then(docs => {
         res.status(200).json(docs);
     })
@@ -13,6 +12,7 @@ export function getAllClass(req, res) {
         res.status(500).json({ error: err });
     });
 }
+
 export async function addClass(req, res) {
     const classe = new Class({
         className: req.body.className,
