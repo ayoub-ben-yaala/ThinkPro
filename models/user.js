@@ -37,12 +37,12 @@ const userSchema = new Schema(
 
         dateOfB:{
             type:String,
-            required:false
+            required:true
             
         },
         avatar:{
             type:String,
-            required:false
+            required:true
            
 
         },
