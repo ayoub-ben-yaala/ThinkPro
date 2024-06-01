@@ -1,6 +1,6 @@
 import User from '../models/user.js';
 import Class from '../models/class.js';
-import twilio from 'twilio';
+// import twilio from 'twilio';
 
 
 export function getAllClass(req, res) {
@@ -14,9 +14,9 @@ export function getAllClass(req, res) {
 }
 
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = twilio(accountSid, authToken);
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+// const client = twilio(accountSid, authToken);
 
 
 export async function addClass(req, res) {
@@ -38,13 +38,13 @@ export async function addClass(req, res) {
             classe: newClass
         });
 
-        client.messages
-  .create({
-     body: `Vous etes inscrit au classe ${req.body.className}`,  //api message
-     from: '+13343578598',
-     to: '+21656257992'
-   })
-  .then(message => console.log(message.sid));
+// client.messages
+//   .create({
+//      body: `Vous etes inscrit au classe ${req.body.className}`,  //api message
+//      from: '+13343578598',
+//      to: '+21656257992'
+//    })
+    // .then(message => console.log(message.sid));
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "An error occurred while creating the class" });
