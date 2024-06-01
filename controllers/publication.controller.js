@@ -41,3 +41,34 @@ export async function getPublicationById(req, res) {
         res.status(500).json({ error: "An error occurred while searching for the publication" });
     }
 }
+
+//update publication by id
+export async function updatePublication(req, res) {
+    try {
+        const publication = await Publication.findByIdAndUpdate(req.params.id   , req.body  , { new: true });
+        if (!publication) {
+            return res.status(404).json({ message: "Publication not found" });
+        }
+        res.status(200).json(publication);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while updating the publication" });
+    }
+}
+
+//delete publication by id
+export async function deletePublication(req, res) {
+    try {
+        const publication = await Publication.findByIdAndDelete(req.params.id);
+        
+        if (!publication) {
+            return res.status(404).json({ message: "Publication not found" });
+        }
+        
+        res.status(200).json({ message: "Publication deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while deleting the publication" });
+    }
+}

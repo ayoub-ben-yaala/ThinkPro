@@ -40,5 +40,3 @@ app.listen(port, () => {
 app.use("/user", userRoutes);
 app.use("/", publicationRoutes);
 app.use("/", commentRoutes);
-
-
