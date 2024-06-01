@@ -40,7 +40,7 @@ export async function addClass(req, res) {
 
         client.messages
   .create({
-     body: `Vous etes inscrit au classe ${req.body.className}`,
+     body: `Vous etes inscrit au classe ${req.body.className}`,  //api message
      from: '+13343578598',
      to: '+21656257992'
    })
