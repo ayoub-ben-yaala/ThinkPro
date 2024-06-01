@@ -88,7 +88,7 @@ export async function putOnce(req, res) {
     try {
         const updatedCommande = await Commande.findOneAndUpdate(
             { _id: req.params.idCommande }, 
-            { numCommande: req.params.numCommande , qteCommande: req.body.qteCommande, }, 
+            { numCommande: req.body.numCommande , qteCommande: req.body.qteCommande, }, 
             { new: true } 
         );
 

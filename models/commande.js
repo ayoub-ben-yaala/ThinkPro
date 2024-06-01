@@ -13,7 +13,12 @@ const   CommandeSchema = new Schema(
         },
         produit: {
             type: String,
-        }
+        },
+        userid:{
+            type : mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: false
+        },
     },
     {
         timestamps: true 

@@ -52,8 +52,8 @@ export async function getOnce(req, res) {
 export async function putOnce(req, res) {
     try {
         const updatedtypeProduit = await typeProduit.findOneAndUpdate(
-            { idType: req.params.idType}, 
-            { nomType: req.params.nomType ,descType: req.body.descType }, // Données à mettre à jour
+            { _id: req.params.idType}, 
+            { nomType: req.body.nomType ,descType: req.body.descType }, // Données à mettre à jour
             { new: true } 
         );
 

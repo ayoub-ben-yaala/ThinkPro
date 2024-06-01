@@ -46,7 +46,7 @@ export async function putOnce(req, res) {
     try {
         const updatedProduit = await Produit.findOneAndUpdate(
             { _id: req.params.idProduit }, 
-            { nomProduit: req.params.nomProduit , descProduit: req.body.descProduit, imageProduit: req.body.imageProduit}, 
+            { nomProduit: req.params.nomProduit , descProduit: req.body.descProduit, imageProduit: req.body.imageProduit,typeProduit:req.body.typeProduit}, 
             { new: true } 
         );
 
