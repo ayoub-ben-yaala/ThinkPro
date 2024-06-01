@@ -8,9 +8,8 @@ import commentRoutes from "./routes/comment.route.js";
 import User from "./models/user.js";
 import Publication from "./models/publication.js";
 import comment from "./models/comment.js";
-import mongoose from 'mongoose'; 
+
 import dotenv from 'dotenv';
-import userRoutes from './routes/user.js';
 
 dotenv.config();
 
