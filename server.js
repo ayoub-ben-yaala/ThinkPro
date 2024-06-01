@@ -9,15 +9,27 @@ import paymentRoutes  from'./routes/payment.js';
 import publicationRoutes from "./routes/publication.routes.js";
 import commentRoutes from "./routes/comment.route.js";
 
-dotenv.config();
+import produitRoutes from './routes/Produit.js';
+import typeRoutes from './routes/typeProduit.js';
+import commandeRoutes from './routes/commande.js';
 
-const app = express();
-const port = process.env.PORT || 8080;
-const databaseName = 'ThinkPro';
+
+dotenv.config();
+app.use(express.json());
+
+
+app.use('/user', userRoutes);
+app.use('/produit', produitRoutes);
+app.use('/type', typeRoutes);
+app.use('/commande', commandeRoutes);
+app.use("/", publicationRoutes);
+app.use("/", commentRoutes);
 
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
-
+const app = express();
+const port = process.env.PORT || 8080;
+const databaseName = "ThinkPro";
 mongoose
   .connect(`mongodb://127.0.0.1:27017/${databaseName}`)
   .then(() => {
