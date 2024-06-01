@@ -8,6 +8,11 @@ import commentRoutes from "./routes/comment.route.js";
 import User from "./models/user.js";
 import Publication from "./models/publication.js";
 import comment from "./models/comment.js";
+import mongoose from 'mongoose'; 
+import dotenv from 'dotenv';
+import userRoutes from './routes/user.js';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -18,11 +23,9 @@ mongoose.set("debug", true);
 // Utilisation des promesses ES6 pour Mongoose, donc aucune callback n'est nécessaire
 mongoose.Promise = global.Promise;
 
-// Se connecter à MongoDB
 mongoose
   .connect(`mongodb://127.0.0.1:27017/${databaseName}`)
   .then(() => {
-    // Une fois connecté, afficher un message de réussite sur la console
     console.log(`Connected to ${databaseName}`);
   })
   .catch((err) => {
