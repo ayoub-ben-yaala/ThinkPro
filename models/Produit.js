@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose'; 
+import { ref } from 'pdfkit';
 const { Schema, model } = mongoose; 
 
 const ProduitSchema = new Schema(
@@ -26,6 +27,11 @@ const ProduitSchema = new Schema(
         },
         typeProduit :{
             type: String,
+        },
+        userid:{
+            type : mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
         },
         
     },
