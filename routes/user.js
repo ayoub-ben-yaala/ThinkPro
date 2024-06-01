@@ -1,42 +1,26 @@
 import express from'express';
 var router = express.Router();
 import {
-  // getUserByName,
-  getUserByEmail,
-  putUser,
-  patchUser,
-  getAllUsers,
-  AddUser,
-  deleteUser,
-  signin,
-  signup,
-  forgotPassword,
-  resetPassword
+  getOnce,
+  putOnce,
+  patchOnce,
+  getAll,
+  AddOnce,
+  deleteOnce
 } from '../controllers/user.js';
 
 router
   .route('/')
-  .get(getAllUsers)
-  .post(AddUser);
-
-router.route('/signup')
-  .post(signup);
-
-router.route('/signin')
-  .post(signin);
-
-// router.get('/:userName',getUserByName);
-router.get('/:email',getUserByEmail);
+  .get(getAll)
+  .post(AddOnce);
 
   router
-  .route('/:userId')
-  .put(putUser)
-  .patch(patchUser)
-  .delete(deleteUser);
-
-  router.post('/forgot-password',forgotPassword);
-router.post('/reset-password/:token',resetPassword);
-
+  .route('/:userName')
+  .get(getOnce)
+  .put(putOnce)
+  .patch(patchOnce)
+  .delete(deleteOnce);
+/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
