@@ -1,6 +1,7 @@
 
 import mongoose from 'mongoose'; 
-import { ref } from 'pdfkit';
+import pkg from 'pdfkit';
+const { ref } = pkg;
 const { Schema, model } = mongoose; 
 
 const ProduitSchema = new Schema(
