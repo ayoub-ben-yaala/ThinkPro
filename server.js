@@ -12,8 +12,8 @@ import inscriptionRoutes from './routes/inscription.js'
 import offreRoutes from './routes/offre.js'
 import paymentRoutes  from'./routes/payment.js';
 import Type_offreRoutes  from'./routes/Type_offre.js';
-import publicationRoutes from "./routes/publication.routes.js";
-import commentRoutes from "./routes/comment.route.js";
+import publicationRoutes from "./routes/publication.js";
+import commentRoutes from "./routes/comment.js";
 import eventRoutes from "./routes/event.js";
 import eventCategoryRoutes from "./routes/eventCategory.js";
 import geocode from './routes/geocode.js';

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { createPublication, getAllPublications, getPublicationById, updatePublication, deletePublication } from "../controllers/publication.controller.js";
+import { createPublication, getAllPublications, getPublicationById, updatePublication, deletePublication } from "../controllers/publication.js";
 
 router.post("/publication", createPublication);
 router.get("/publication/all", getAllPublications);
