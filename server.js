@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose'; // Importer Mongoose
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
@@ -23,6 +24,8 @@ import typeProduitRoutes from './routes/typeProduit.js';
 
 
 const app = express();  // Initialize the express app
+app.use(cors({
+  origin: 'http://localhost:4200'}));
 const port = process.env.PORT || 8080;
 const databaseName = 'ThinkPro';
 
