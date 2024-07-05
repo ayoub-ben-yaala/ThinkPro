@@ -1,3 +1,5 @@
+//controller/offre.js
+
 /*import inscription from '../models/inscription.js';
 import Offre from '../models/offre.js'; 
 import Type_offre from '../models/Type_offre.js'; 
@@ -93,10 +95,11 @@ export const deleteOnce = async (req, res) => {
 
 
 
-import Inscription from '../models/inscription.js';
+import User from '../models/user.js';
 import Offre from '../models/offre.js';
 import Type_offre from '../models/Type_offre.js';
 import SendEmail from '../middlewares/mailer.js';
+import user from '../models/user.js';
 
 const offres = [];
 
@@ -104,6 +107,7 @@ export function getAll(req, res) {
     Offre
         .find({})
         .then(docs => {
+            console.log(docs);
             res.status(200).json(docs);
         })
         .catch(err => {
@@ -125,6 +129,7 @@ export async function AddOnce(req, res) {
             nom_offre: req.body.nom_offre,
             id_type: req.body.id_type,
             prix_offre: req.body.prix_offre,
+            frais: req.body.frais,
             mode_de_paiement: req.body.mode_de_paiement,
             image:`${req.protocol}://${req.get("host")}/img/${req.file.filename}`
         });
@@ -136,7 +141,23 @@ export async function AddOnce(req, res) {
         };
 
         // Envoyer l'email avec les informations de l'offre
-        await SendEmail(emailData);
+        const users = await User.find({});
+        if (users.length !== 0) {
+            for (let i = 0; i < users.length; i++) {
+
+                const user = users[i];
+                console.log("Sending email to: " + user.email);
+
+                try {
+                    await SendEmail(emailData, user); // Send email
+                    console.log("Email sent successfully to " + user.email);
+                } catch (err) {
+                    console.log("Failed to send email to " + user.email, err);
+                }
+            }
+        }
+        
+        // await SendEmail(emailData);
 
         res.status(200).json({ message: "Ajout avec succès !" });
     } catch (err) {

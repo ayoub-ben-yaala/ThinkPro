@@ -1,3 +1,4 @@
+//controler/inscri.js
 import Inscription from '../models/inscription.js'; 
 const inscriptions=[];
 export function getAll(req, res) {
@@ -13,12 +14,11 @@ export function getAll(req, res) {
 
 export async function AddOnce(req, res) {
     const inscription = new Inscription({
-        eleveId: req.body.eleveId,
+        NomEleve: req.body.NomEleve,
         anneeScolaire: req.body.anneeScolaire,
         classeNiveau: req.body.classeNiveau,
-        statutInscription: req.body.statutInscription,
-        reçuInscription: req.body.reçuInscription,
-        datePaiement: req.body.datePaiement
+        id_offre: req.body.id_offre,
+        id_user: req.body.id_user
     });
 
     try {

@@ -1,13 +1,14 @@
+//models/type-off.js
 import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
 
 const type_offreSchema = new Schema(
     {
-        id_type: {
-            type: String,
+        // id_type: {
+        //     type: String,
             
-        },
+        // },
         libelle_type: {
             type: String,
         },

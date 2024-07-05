@@ -1,13 +1,17 @@
+//models/inscri.js
 import mongoose from 'mongoose'; // Importer Mongoose
 const { Schema, model } = mongoose; 
 
 
 const inscriptionSchema = new Schema(
     {
-        eleveId: {
-            type: Schema.Types.ObjectId, 
-        },
+        // eleveId: {
+        //     type: Schema.Types.ObjectId, 
+        // },
+        NomEleve: {
+            type: String,
         
+        },
         anneeScolaire: {
             type: String,
         
@@ -16,18 +20,7 @@ const inscriptionSchema = new Schema(
             type: String,
             
         },
-        statutInscription: {
-            type: String,
-            
-        },
-        reçuInscription: {
-            type: Number,
-            
-        },
-        datePaiement: {
-            type: Date,
-            
-        },
+        
         id_offre: {
             type: Schema.Types.ObjectId,
             ref:'Offre',
