@@ -6,10 +6,12 @@ import inscriptionRoutes from './routes/inscription.js'
 import offreRoutes from './routes/offre.js'
 import paymentRoutes  from'./routes/payment.js';
 import Type_offreRoutes  from'./routes/Type_offre.js';
-
+import cors from 'cors';
 
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:4200'}));
 const port = process.env.PORT || 8080;
 const databaseName = 'ThinkPro';
 
