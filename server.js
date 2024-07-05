@@ -21,6 +21,8 @@ import geocode from './routes/geocode.js';
 import produitRoutes from './routes/Produit.js';
 import commandeRoutes from './routes/commande.js';
 import typeProduitRoutes from './routes/typeProduit.js';
+import multer from 'multer';
+
 
 
 const app = express();  // Initialize the express app
@@ -45,6 +47,10 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/img', express.static('public/images'));
+
+
+
+
 
 app.use('/user', userRoutes);
 app.use('/inscription', inscriptionRoutes);

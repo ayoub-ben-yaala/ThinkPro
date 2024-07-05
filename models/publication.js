@@ -8,7 +8,8 @@ const publicationSchema = new Schema({
     required: true,
   },
   attachment: {
-    type: String,
+    type: Object,
+    default: '',
   },
   created_at: {
     type: Date,
