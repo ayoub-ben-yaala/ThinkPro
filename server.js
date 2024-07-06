@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose'; // Importer Mongoose
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
@@ -20,9 +21,13 @@ import geocode from './routes/geocode.js';
 import produitRoutes from './routes/Produit.js';
 import commandeRoutes from './routes/commande.js';
 import typeProduitRoutes from './routes/typeProduit.js';
+import multer from 'multer';
+
 
 
 const app = express();  // Initialize the express app
+app.use(cors({
+  origin: 'http://localhost:4200'}));
 const port = process.env.PORT || 8080;
 const databaseName = 'ThinkPro';
 
@@ -42,6 +47,10 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/img', express.static('public/images'));
+
+
+
+
 
 app.use('/user', userRoutes);
 app.use('/inscription', inscriptionRoutes);
