@@ -3,7 +3,6 @@ import upload from '../middlewares/upload.js';
 var router = express.Router();
 import {
   getAllexamens,
-  addExamen,
   updateExamen,
   deleteExamen,
   getExamen,
@@ -12,8 +11,7 @@ import {
 
 router
   .route('/')
-  .get(getAllexamens)
-  .post(addExamen);
+  .get(getAllexamens);
 
 
 

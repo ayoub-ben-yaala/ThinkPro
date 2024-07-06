@@ -36,7 +36,7 @@ export async function addLevel(req, res) {
 
 export async function getLevel(req, res) {
     try {
-        const level = await Level.findOne({ levelName: req.params.levelName });
+        const level = await Level.findOne({ _id: req.params.levelId });
         
         if (!level) {
             return res.status(404).json({ message: "level not found" });
@@ -56,7 +56,7 @@ export async function updateLevel(req, res) {
 
 
         const updatedLevel = await Level.findOneAndUpdate(
-            {  _id:req.params.classId}, 
+            {  _id:req.params.levelId}, 
             { LevelName: req.body.LevelName,programme: req.body.programme,class: req.body.class,cours: req.body.cours }, // Données à mettre à jour
             { new: true } 
         );
@@ -79,7 +79,7 @@ export async function updateLevel(req, res) {
 
 export async function deleteLevel(req, res) {
     try {
-        const deletedLevel = await Level.findOneAndDelete({ levelName: req.params.levelName });
+        const deletedLevel = await Level.findOneAndDelete({ _id: req.params.levelId });
 
         if (!deletedLevel) {
             return res.status(404).json({ message: "level not found" });
@@ -93,4 +93,19 @@ export async function deleteLevel(req, res) {
         console.error(error);
         res.status(500).json({ error: "Erreur in deleting Level" });
     }
+}
+    export async function getLevelByName(req, res) {
+        try {
+            const level = await Level.findOne({ levelName: req.params.levelId });
+            
+            if (!level) {
+                return res.status(404).json({ message: "level not found" });
+            }
+            
+            res.status(200).json(level);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Erreur lors de la recherche de level" });
+        }
+    
 }

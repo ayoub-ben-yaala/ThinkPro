@@ -13,7 +13,7 @@ router
   .route('/')
   .get(getAll)
   .post(AddOnce);
-
+  router.get('/:userId',getUserById);
   router
   .route('/:userName')
   .get(getOnce)

@@ -3,9 +3,10 @@ var router = express.Router();
 import {
   getAlllevel,
   addLevel,
-  getLevel,
   updateLevel,
-  deleteLevel
+  deleteLevel,
+  getLevel,
+  getLevelByName
 
 } from '../controllers/level.js';
 
@@ -19,7 +20,7 @@ router
 
   router
   .route('/:levelId')
-  .get(getLevel)
+  .get(getLevelByName)
   .put(updateLevel)
   .delete(deleteLevel);
 
