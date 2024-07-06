@@ -6,7 +6,8 @@ import {
   patchOnce,
   getAll,
   AddOnce,
-  deleteOnce
+  deleteOnce,
+  getUserById
 } from '../controllers/user.js';
 
 router
