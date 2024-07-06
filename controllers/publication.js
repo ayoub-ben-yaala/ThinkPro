@@ -1,4 +1,5 @@
 import Publication from "../models/publication.js";
+import multer from "multer";
 
 //add publication using async function and export it
 export async function createPublication(req, res) {
@@ -43,9 +44,30 @@ export async function getPublicationById(req, res) {
 }
 
 //update publication by id
+// export async function updatePublication(req, res) {
+//     try {
+//         const publication = await Publication.findByIdAndUpdate(req.params.id   , req.body  , { new: true });
+//         if (!publication) {
+//             return res.status(404).json({ message: "Publication not found" });
+//         }
+//         res.status(200).json(publication);
+//     }
+//     catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "An error occurred while updating the publication" });
+//     }
+// }
+// Update publication by id
 export async function updatePublication(req, res) {
     try {
-        const publication = await Publication.findByIdAndUpdate(req.params.id   , req.body  , { new: true });
+        const updatedData = req.body;
+        
+        // If a file is uploaded, update the attachment field
+        if (req.file) {
+            updatedData.attachment = `/public/uploads/${req.file.filename}`;
+        }
+
+        const publication = await Publication.findByIdAndUpdate(req.params.id, updatedData, { new: true });
         if (!publication) {
             return res.status(404).json({ message: "Publication not found" });
         }
