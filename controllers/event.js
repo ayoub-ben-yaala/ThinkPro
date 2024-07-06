@@ -20,7 +20,9 @@ export async function addEvent(req, res) {
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         prix_event: req.body.prix_event,
-        nombre_de_places: req.body.nombre_de_places
+        nombre_de_places: req.body.nombre_de_places,
+        image:req.body.image,
+        eventCategoryID:req.body.eventCategoryID
     });
 
     try {

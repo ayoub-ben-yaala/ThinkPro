@@ -30,9 +30,19 @@ const eventSchema = new Schema(
         prix_event: {
             type: Number
         },
+        image: {
+            type: String
+        },
         nombre_de_places: {
             type: Number
-        }
+        },
+          eventCategoryID: {
+                    type: String,
+                    
+                }
+               
+            
+      
     },
     {
         timestamps: true // Ajouter automatiquement createdAt et updatedAt
