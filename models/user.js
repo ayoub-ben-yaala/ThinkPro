@@ -1,37 +1,59 @@
+import mongoose from 'mongoose'; 
+const { Schema, model } = mongoose; 
 
-import mongoose from 'mongoose'; // Importer Mongoose
-const { Schema, model } = mongoose; // Utiliser Schema et model du module mongoose
-
-// Créez votre schéma qui décrit à quoi ressemblera chaque document
 const userSchema = new Schema(
     {
         userName: {
             type: String,
-             // Cet attribut est obligatoire
+            required: true
         },
         passWord: {
             type: String,
+            required: true
           
         },
         email: {
             type: String,
-           
-        },
+            required: true,
+            unique:true
+            },
+
           adress: {
             type: String,
+            required: true
             
         },
           phone: {
             type: Number,
+            required: true
            
         },
           role: {
             type: String,
+            required: true
             
-        }
+        },
+
+        dateOfB:{
+            type:String,
+            required:true
+            
+        },
+        avatar:{
+            type:String,
+            required:true
+           
+
+        },
+        resetPasswordToken: {
+            type:String
+        },
+        resetPasswordExpires:{
+            type: Date
+        },
     },
     {
-        timestamps: true // Ajouter automatiquement createdAt et updatedAt
+        timestamps: true
     }
 );
 
