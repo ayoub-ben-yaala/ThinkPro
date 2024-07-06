@@ -81,9 +81,23 @@ export async function AddUser(req, res) {
     }
 }
 
-export async function getUserByEmail(req, res) {
+// export async function getUserByEmail(req, res) {
+//     try {
+//         const user = await User.findOne({ email: req.params.email });
+        
+//         if (!user) {
+//             return res.status(404).json({ message: "Utilisateur non trouvé" });
+//         }
+        
+//         res.status(200).json(user);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Erreur lors de la recherche de l'utilisateur" });
+//     }
+// }
+export async function getUserById(req, res) {
     try {
-        const user = await User.findOne({ email: req.params.email });
+        const user = await User.findOne({ _id: req.params.userId });
         
         if (!user) {
             return res.status(404).json({ message: "Utilisateur non trouvé" });
@@ -95,6 +109,7 @@ export async function getUserByEmail(req, res) {
         res.status(500).json({ error: "Erreur lors de la recherche de l'utilisateur" });
     }
 }
+
 // export async function getUserByName(req, res) {
 //     try {
 //         const user = await User.findOne({ userName: req.params.userName });

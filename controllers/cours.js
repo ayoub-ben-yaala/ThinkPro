@@ -42,7 +42,7 @@ export async function addCours(req, res) {
 
 export async function getCours(req, res) {
     try {
-        const cours = await Class.findOne({ courName: req.params.courName });
+        const cours = await Cours.findOne({ _id: req.params.coursId });
         
         if (!cours) {
             return res.status(404).json({ message: "cours not found" });

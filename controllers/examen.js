@@ -17,47 +17,7 @@ export function getAllexamens(req, res) {
     });
 }
 
-// Configure multer for file upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Save files to the "uploads" directory
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Append the file extension
-    }
-});
 
-const upload = multer({ storage: storage }).single('pdfPath');
-
-// Add Examen function
-export async function addExamen(req, res) {
-    upload(req, res, async (err) => {
-        if (err) {
-            return res.status(500).json({ error: "File upload failed" });
-        }
-
-        const { idTeacher, examen } = req.body;
-        const pdfPath = req.file.path; // Path to the uploaded file
-
-        try {
-            const newExamen = new Examen({
-                idTeacher,
-                examen,
-                pdfPath
-            });
-
-            await newExamen.save();
-
-            res.status(201).json({
-                message: "Exam created successfully!",
-                examen: newExamen
-            });
-        } catch (err) {
-            console.error(err);
-            res.status(500).json({ error: "An error occurred while creating the exam" });
-        }
-    });
-}
 
 // export async function addExamen(req, res) {
       
@@ -86,7 +46,7 @@ export async function addExamen(req, res) {
 
 export async function getExamen(req, res) {
     try {
-        const examen = await Examen.findOne({ idExamen: req.params.idExamen });
+        const examen = await Examen.findOne({ _id: req.params.idExamen });
         
         if (!examen) {
             return res.status(404).json({ message: "exam not found" });
@@ -101,9 +61,6 @@ export async function getExamen(req, res) {
 
 export async function updateExamen(req, res) {
     try {
-
-        
-
 
         const updatedExamen = await Examen.findOneAndUpdate(
             {  _id:req.params.idExamen}, 

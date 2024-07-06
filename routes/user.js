@@ -2,7 +2,7 @@ import express from'express';
 var router = express.Router();
 import {
   // getUserByName,
-  getUserByEmail,
+  //getUserByEmail,
   putUser,
   patchUser,
   getAllUsers,
@@ -11,7 +11,8 @@ import {
   signin,
   signup,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  getUserById
 } from '../controllers/user.js';
 
 router
@@ -26,7 +27,7 @@ router.route('/signin')
   .post(signin);
 
 // router.get('/:userName',getUserByName);
-router.get('/:email',getUserByEmail);
+router.get('/:userId',getUserById);
 
   router
   .route('/:userId')
